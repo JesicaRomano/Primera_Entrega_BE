@@ -15,8 +15,8 @@ class CartManager{
     }
     
     
-    writeCarts = async (cart) => {
-        await fs.writeFile(this.path, JSON.stringify(cart))
+    writeCarts = async (carts) => {
+        await fs.writeFile(this.path, JSON.stringify(carts))
     }
     
     exist = async(id) => {
@@ -27,7 +27,7 @@ class CartManager{
     addCarts = async () => {
         let cartsOld = await this.readCarts();
         let id = nanoid()
-        let cartsConcat = [{ id:id, products : {}}, ...cartsOld]
+        let cartsConcat = [{ id:id, products : []}, ...cartsOld]
         await this.writeCarts(cartsConcat)
         return "Carrito agregado"
     };
